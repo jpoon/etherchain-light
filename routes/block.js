@@ -42,8 +42,9 @@ router.get('/:block', function(req, res, next) {
     block.transactions.forEach(function(tx) {
       tx.traces = [];
       tx.failed = false;
-      if (traces != null) {
-        traces.forEach(function(trace) {
+      console.log(traces)
+      if (traces != null && traces.structLogs != null) {
+        traces.structLogs.forEach(function(trace) {
           if (tx.hash === trace.transactionHash) {
             tx.traces.push(trace);
             if (trace.error) {

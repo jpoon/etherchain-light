@@ -70,9 +70,10 @@ router.get('/:tx', function(req, res, next) {
         callback(err, result);
       });
     }, function(result, callback) {
-      web3.trace.transaction(result.hash, function(err, traces) {
-        callback(err, result, traces);
-      });
+      callback(null, result, null);
+      //web3.trace.transaction(result.hash, function(err, traces) {
+      //  callback(err, result, traces);
+      //});
     }, function(tx, traces, callback) {
       db.get(tx.to, function(err, value) {
         callback(null, tx, traces, value);
